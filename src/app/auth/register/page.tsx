@@ -1,6 +1,11 @@
-import { generateCuid2ID } from "~/utils/cuid2";
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { createUser } from "~/app/lib/auth/actions";
 
 export default function RegisterPage() {
+  const searchParams = useSearchParams();
+
   return (
     <main className="flex flex-col items-center">
       <div className="inline-flex flex-col items-center mt-24 border border-gray-200 p-8 rounded">
@@ -11,9 +16,10 @@ export default function RegisterPage() {
         <p className="text-gray-600">
           You will be getting started in a matter of minutes
         </p>
-        <p>{generateCuid2ID({ length: 24 })}</p>
+
         <div className="my-6 h-px w-full bg-gray-200"></div>
-        <form className="flex flex-col gap-y-6">
+
+        <form action={createUser} className="flex flex-col gap-y-6">
           <div className="flex flex-col">
             <label htmlFor="email">Email</label>
             <input
@@ -22,6 +28,7 @@ export default function RegisterPage() {
               id="email"
               className="p-1 rounded border border-gray-400"
               placeholder="Email address"
+              required
             />
           </div>
 
@@ -33,17 +40,19 @@ export default function RegisterPage() {
               id="password"
               className="p-1 rounded border border-gray-400"
               placeholder="●●●●●●●●●●●●●●●●"
+              required
             />
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="confirm-password">Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirm Password</label>
             <input
-              type="confirm-password"
-              name="confirm-password"
-              id="confirm-password"
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
               className="p-1 rounded border border-gray-400"
               placeholder="●●●●●●●●●●●●●●●●"
+              required
             />
           </div>
 

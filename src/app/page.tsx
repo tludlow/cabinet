@@ -1,8 +1,12 @@
 import Link from "next/link";
+import { getUser } from "./lib/auth/getUser";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getUser();
+
   return (
     <main className="flex min-h-screen flex-col">
+      <p>You are: {user?.email ?? "NOBODY!!"}</p>
       <div className="mt-12 ml-12">
         <Link
           href="/auth/register"
