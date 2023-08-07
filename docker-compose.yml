@@ -1,0 +1,15 @@
+version: "3.6"
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - cabinet_db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=cabinet
+      - POSTGRES_PASSWORD=dbpassword
+      - POSTGRES_DB=cabinet
+volumes:
+  cabinet_db_data:
